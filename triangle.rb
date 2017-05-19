@@ -8,6 +8,8 @@ class Triangle
         '正三角形ですね！'
       elsif isosceles?(line_a, line_b, line_c)
         '二等辺三角形ですね！'
+      else
+        '不等辺三角形ですね！'
       end
     end
 
