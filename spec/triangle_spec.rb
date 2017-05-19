@@ -12,6 +12,10 @@ describe Triangle do
         it { expect(Triangle.display_shape(2, 1, 2)).to eq '二等辺三角形ですね！' }
         it { expect(Triangle.display_shape(2, 2, 1)).to eq '二等辺三角形ですね！' }
       end
+
+      context '3辺の長さが全て異なる場合' do
+        it { expect(Triangle.display_shape(2, 3, 4)).to eq '不等辺三角形ですね！' }
+      end
     end
 
     context '2辺の長さの合計が残りの1辺の長さ以下の場合' do
