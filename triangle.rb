@@ -3,7 +3,7 @@ class Triangle
   class << self
 
     def display_shape(line_a, line_b, line_c)
-      lines = [line_a, line_b, line_c]
+      lines = [line_a.to_i, line_b.to_i, line_c.to_i]
 
       return '辺の長さは0より大きい値を入力してください！' if or_less_zero?(lines)
       return '三角形じゃないです＞＜' unless triangle?(lines)
@@ -37,3 +37,4 @@ class Triangle
   end
 end
 
+puts(Triangle.display_shape(ARGV[0], ARGV[1], ARGV[2]))
