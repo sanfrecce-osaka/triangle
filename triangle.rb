@@ -1,12 +1,16 @@
 class Triangle
-  class << self
-    def display_shape(line_a, line_b, line_c)
-      return '辺の長さは0より大きい値を入力してください！' if or_less_zero?(line_a, line_b, line_c)
-      return '三角形じゃないです＞＜' unless triangle?(line_a, line_b, line_c)
 
-      if equilateral?(line_a, line_b, line_c)
+  class << self
+
+    def display_shape(line_a, line_b, line_c)
+      lines = [line_a, line_b, line_c]
+
+      return '辺の長さは0より大きい値を入力してください！' if or_less_zero?(lines)
+      return '三角形じゃないです＞＜' unless triangle?(lines)
+
+      if equilateral?(lines)
         '正三角形ですね！'
-      elsif isosceles?(line_a, line_b, line_c)
+      elsif isosceles?(lines)
         '二等辺三角形ですね！'
       else
         '不等辺三角形ですね！'
@@ -15,20 +19,20 @@ class Triangle
 
     private
 
-    def or_less_zero?(line_a, line_b, line_c)
-      line_a <= 0 || line_b <= 0 || line_c <= 0
+    def or_less_zero?(lines)
+      lines[0] <= 0 || lines[1] <= 0 || lines[2] <= 0
     end
 
-    def triangle?(line_a, line_b, line_c)
-      line_a + line_b > line_c && line_b + line_c > line_a && line_c + line_a > line_b
+    def triangle?(lines)
+      lines[0] + lines[1] > lines[2] && lines[1] + lines[2] > lines[0] && lines[2] + lines[0] > lines[1]
     end
 
-    def equilateral?(line_a, line_b, line_c)
-      line_a == line_b && line_b == line_c
+    def equilateral?(lines)
+      lines[0] == lines[1] && lines[1] == lines[2]
     end
 
-    def isosceles?(line_a, line_b, line_c)
-      line_a == line_b || line_b == line_c || line_c == line_a
+    def isosceles?(lines)
+      lines[0] == lines[1] || lines[1] == lines[2] || lines[2] == lines[0]
     end
   end
 end
