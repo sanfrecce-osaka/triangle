@@ -6,6 +6,8 @@ class Triangle
 
       if equilateral?(line_a, line_b, line_c)
         '正三角形ですね！'
+      elsif isosceles?(line_a, line_b, line_c)
+        '二等辺三角形ですね！'
       end
     end
 
@@ -21,6 +23,10 @@ class Triangle
 
     def equilateral?(line_a, line_b, line_c)
       line_a == line_b && line_b == line_c
+    end
+
+    def isosceles?(line_a, line_b, line_c)
+      line_a == line_b || line_b == line_c || line_c == line_a
     end
   end
 end
