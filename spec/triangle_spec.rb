@@ -44,4 +44,10 @@ describe Triangle do
     it { expect(Triangle.display_shape('0.8', '0.1', '０．７')).to eq '三角形じゃないです＞＜' }
     it { expect(Triangle.display_shape('0.7', '０．８', '0.1')).to eq '三角形じゃないです＞＜' }
   end
+
+  context '引数に分数を含む場合' do
+    it { expect(Triangle.display_shape('１／１０', '7/10', '8/10')).to eq '三角形じゃないです＞＜' }
+    it { expect(Triangle.display_shape('8/10', '1/10', '７／１０')).to eq '三角形じゃないです＞＜' }
+    it { expect(Triangle.display_shape('7/10', '８／１０', '1/10')).to eq '三角形じゃないです＞＜' }
+  end
 end
