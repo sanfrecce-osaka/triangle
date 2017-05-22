@@ -1,9 +1,13 @@
+require 'nkf'
+
 class Triangle
 
   class << self
 
     def display_shape(line_a, line_b, line_c)
-      lines = [line_a.to_i, line_b.to_i, line_c.to_i]
+      lines = [line_a, line_b, line_c].map do |line|
+        NKF.nkf('-m0Z1 -W -w', line).to_i
+      end
 
       return '辺の長さは0より大きい値を入力してください！' if or_less_zero?(lines)
       return '三角形じゃないです＞＜' unless triangle?(lines)
