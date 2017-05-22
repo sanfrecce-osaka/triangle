@@ -7,6 +7,7 @@ class Triangle
     def display_shape(line_a, line_b, line_c)
       lines = [line_a, line_b, line_c].map { |line| NKF.nkf('-m0Z1 -W -w', line).to_r }
 
+      # 引数に整数、小数、分数以外が指定された場合String#to_rで0/1に変換されるため、ここでメッセージを表示する
       return '辺の長さは0より大きい整数、小数、分数を半角または全角で入力してください！' if or_less_zero?(lines)
       return '三角形じゃないです＞＜' unless triangle?(lines)
 
