@@ -5,9 +5,7 @@ class Triangle
   class << self
 
     def display_shape(line_a, line_b, line_c)
-      lines = [line_a, line_b, line_c].map do |line|
-        NKF.nkf('-m0Z1 -W -w', line).to_i
-      end
+      lines = [line_a, line_b, line_c].map { |line| NKF.nkf('-m0Z1 -W -w', line).to_r }
 
       return '辺の長さは0より大きい値を入力してください！' if or_less_zero?(lines)
       return '三角形じゃないです＞＜' unless triangle?(lines)
@@ -24,11 +22,19 @@ class Triangle
     private
 
     def or_less_zero?(lines)
-      lines[0] <= 0 || lines[1] <= 0 || lines[2] <= 0
+      check_or_less_zero(lines[0]) <= 0 || check_or_less_zero(lines[1]) <= 0 || check_or_less_zero(lines[2]) <= 0
+    end
+
+    def check_or_less_zero(line)
+      line <=> 0
     end
 
     def triangle?(lines)
-      lines[0] + lines[1] > lines[2] && lines[1] + lines[2] > lines[0] && lines[2] + lines[0] > lines[1]
+      check_triangle_condition(lines[0], lines[1], lines[2]) == 1 && check_triangle_condition(lines[1], lines[2], lines[0]) == 1 && check_triangle_condition(lines[2], lines[0], lines[1]) == 1
+    end
+
+    def check_triangle_condition(line_a, line_b, line_c)
+      line_a + line_b <=> line_c
     end
 
     def equilateral?(lines)
