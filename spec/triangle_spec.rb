@@ -38,4 +38,10 @@ describe Triangle do
     it { expect(Triangle.display_shape('1', '１', '1')).to eq '正三角形ですね！' }
     it { expect(Triangle.display_shape('1', '１', '１')).to eq '正三角形ですね！' }
   end
+
+  context '引数に小数を含む場合' do
+    it { expect(Triangle.display_shape('０．１', '0.7', '0.8')).to eq '三角形じゃないです＞＜' }
+    it { expect(Triangle.display_shape('0.8', '0.1', '０．７')).to eq '三角形じゃないです＞＜' }
+    it { expect(Triangle.display_shape('0.7', '０．８', '0.1')).to eq '三角形じゃないです＞＜' }
+  end
 end
