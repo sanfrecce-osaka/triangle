@@ -27,9 +27,9 @@ describe Triangle do
     end
 
     context '与えられた辺の長さに0以下が含まれている場合' do
-      it { expect(Triangle.display_shape('0', '1', '1')).to eq '辺の長さは0より大きい値を入力してください！' }
-      it { expect(Triangle.display_shape('1', '0', '1')).to eq '辺の長さは0より大きい値を入力してください！' }
-      it { expect(Triangle.display_shape('1', '1', '0')).to eq '辺の長さは0より大きい値を入力してください！' }
+      it { expect(Triangle.display_shape('0', '1', '1')).to eq '辺の長さは0より大きい整数、小数、分数を半角または全角で入力してください！' }
+      it { expect(Triangle.display_shape('1', '0', '1')).to eq '辺の長さは0より大きい整数、小数、分数を半角または全角で入力してください！' }
+      it { expect(Triangle.display_shape('1', '1', '0')).to eq '辺の長さは0より大きい整数、小数、分数を半角または全角で入力してください！' }
     end
   end
 
@@ -49,5 +49,11 @@ describe Triangle do
     it { expect(Triangle.display_shape('１／１０', '7/10', '8/10')).to eq '三角形じゃないです＞＜' }
     it { expect(Triangle.display_shape('8/10', '1/10', '７／１０')).to eq '三角形じゃないです＞＜' }
     it { expect(Triangle.display_shape('7/10', '８／１０', '1/10')).to eq '三角形じゃないです＞＜' }
+  end
+
+  context '引数に整数、小数、分数以外を含む場合' do
+    it { expect(Triangle.display_shape('異常値', '1', '1')).to eq '辺の長さは0より大きい整数、小数、分数を半角または全角で入力してください！' }
+    it { expect(Triangle.display_shape('1', '異常値', '1')).to eq '辺の長さは0より大きい整数、小数、分数を半角または全角で入力してください！' }
+    it { expect(Triangle.display_shape('1', '1', '異常値')).to eq '辺の長さは0より大きい整数、小数、分数を半角または全角で入力してください！' }
   end
 end
