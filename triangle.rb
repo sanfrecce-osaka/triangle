@@ -23,19 +23,11 @@ class Triangle
     private
 
     def or_less_zero?(lines)
-      check_or_less_zero(lines[0]) <= 0 || check_or_less_zero(lines[1]) <= 0 || check_or_less_zero(lines[2]) <= 0
-    end
-
-    def check_or_less_zero(line)
-      line <=> 0
+      (lines[0] <=> 0) <= 0 || (lines[1] <=> 0) <= 0 || (lines[2] <=> 0) <= 0
     end
 
     def triangle?(lines)
-      check_triangle_condition(lines[0], lines[1], lines[2]) == 1 && check_triangle_condition(lines[1], lines[2], lines[0]) == 1 && check_triangle_condition(lines[2], lines[0], lines[1]) == 1
-    end
-
-    def check_triangle_condition(line_a, line_b, line_c)
-      line_a + line_b <=> line_c
+      (lines[0] + lines[1] <=> lines[2]) == 1 && (lines[1] + lines[2] <=> lines[0]) == 1 && (lines[2] + lines[0] <=> lines[1]) == 1
     end
 
     def equilateral?(lines)
